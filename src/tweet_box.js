@@ -3,6 +3,7 @@ import inRange from 'lodash/inRange';
 import CharacterCount from './character_count';
 import ImageInput from './image_input';
 import first from 'lodash/first';
+import DivTextArea from './text_div';
 
 
 var TweetBox = React.createClass({
@@ -38,11 +39,9 @@ var TweetBox = React.createClass({
   },
 
   render: function() {
-    var { text } = this.state;
+    var { text, imagePreview } = this.state;
     var invalidNumberOfCharacters = !inRange(text.length, 1, 141);
 
-    // <div contentEditable='true' role='textbox' placeholder="What's happening?">
-    // </div>
     return (
       <div className='tweet-box-container'>
 
@@ -52,17 +51,15 @@ var TweetBox = React.createClass({
 
         <div className='tweet-form-container'>
 
-          <div className='tweet-content'>
-            <div contentEditable='true'>
-            </div>
-            <img src={this.state.imagePreview} alt=""/>
-            <textarea placeholder="type here!" onChange={this.handleInputChange}/>
-          </div>
+          <DivTextArea imagePreview={imagePreview} handleInputChange={this.handleInputChange}/>
 
           <div className='tool-bar'>
             <ImageInput uploadHandler={this.uploadHandler}/>
-            <CharacterCount textLength={text.length}/>
-            <button disabled={invalidNumberOfCharacters}>submit!</button>
+
+            <div className='submit-container'>
+              <CharacterCount  textLength={text.length}/>
+              <button className='submit-button' disabled={invalidNumberOfCharacters}>submit!</button>
+            </div>
           </div>
 
         </div>
