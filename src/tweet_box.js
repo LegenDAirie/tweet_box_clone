@@ -5,7 +5,6 @@ import ImageInput from './image_input';
 import first from 'lodash/first';
 import DivTextArea from './text_div';
 
-
 var TweetBox = React.createClass({
 
   getInitialState: function() {
@@ -40,25 +39,58 @@ var TweetBox = React.createClass({
 
   render: function() {
     var { text, imagePreview } = this.state;
-    var invalidNumberOfCharacters = !inRange(text.length, 1, 141);
+    var textLength = imagePreview ? text.length + 24: text.length;
+    var invalidNumberOfCharacters = !inRange(textLength, 1, 141);
+
+    var tweetBoxStyle = {
+      backgroundColor: 'pink',
+      width: '500px',
+      borderRadius: '5px',
+      margin: 'auto'
+    };
+
+    var titleContainerStyle = {
+      backgroundColor: '#ffffff',
+      textAlign: 'center',
+      fontSize: '12px',
+      borderTopLeftRadius: '5px',
+      borderTopRightRadius: '5px'
+    };
+
+    var titleStyle = {
+      padding: '5px',
+      color: '#465362'
+    };
+
+    var toolBarStyle = {
+      display: 'flex'
+    };
+
+    var submitContainerStyle = {
+      float: 'right',
+      marginLeft: 'auto'
+    };
+
+    var submitButtonStyle = {
+      marginRight: '5px'
+    };
 
     return (
-      <div className='tweet-box-container'>
+      <div style={tweetBoxStyle}>
 
-        <div className='title-container'>
-          <h2>Compose new Tweet</h2>
+        <div style={titleContainerStyle}>
+          <h2 style={titleStyle}>Compose new Tweet</h2>
         </div>
 
-        <div className='tweet-form-container'>
-
+        <div>
           <DivTextArea imagePreview={imagePreview} handleInputChange={this.handleInputChange}/>
 
-          <div className='tool-bar'>
+          <div style={toolBarStyle}>
             <ImageInput uploadHandler={this.uploadHandler}/>
 
-            <div className='submit-container'>
-              <CharacterCount  textLength={text.length}/>
-              <button className='submit-button' disabled={invalidNumberOfCharacters}>submit!</button>
+            <div style={submitContainerStyle}>
+              <CharacterCount  textLength={textLength}/>
+              <button style={submitButtonStyle} disabled={invalidNumberOfCharacters}>submit!</button>
             </div>
           </div>
 

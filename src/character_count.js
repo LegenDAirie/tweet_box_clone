@@ -4,8 +4,9 @@ var CharacterCount = function(props) {
   var { textLength } = props;
   var spaceRemaining = 140 - textLength;
   var style = {
-    color: spaceRemaining > 10 ? 'grey' : 'red',
-    display: 'inline-block'
+    color: spaceRemaining > 10 ? '#465362' : 'red',
+    display: 'inline-block',
+    marginRight: '5px'
   };
 
   return (
