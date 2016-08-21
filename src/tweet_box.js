@@ -8,11 +8,11 @@ import DivTextArea from './text_div';
 var TweetBox = React.createClass({
 
   getInitialState: function() {
-
     return {
       text: '',
       file: '',
-      imagePreview: ''
+      imagePreview: '',
+      files: {}
     };
   },
 
@@ -22,7 +22,7 @@ var TweetBox = React.createClass({
   },
 
   uploadHandler: function(event) {
-    // event.preventDefault();
+    event.preventDefault();
 
     var reader = new window.FileReader();
     var file = first(event.target.files);
@@ -35,6 +35,14 @@ var TweetBox = React.createClass({
     }.bind(this);
 
     reader.readAsDataURL(file);
+    event.target.value = null;
+  },
+
+  removeImageHandler: function() {
+    this.setState({
+      file: '',
+      imagePreview: '',
+    });
   },
 
   render: function() {
@@ -83,7 +91,11 @@ var TweetBox = React.createClass({
         </div>
 
         <div>
-          <DivTextArea imagePreview={imagePreview} handleInputChange={this.handleInputChange}/>
+          <DivTextArea
+            imagePreview={imagePreview}
+            handleInputChange={this.handleInputChange}
+            removeImage={this.removeImageHandler}
+          />
 
           <div style={toolBarStyle}>
             <ImageInput uploadHandler={this.uploadHandler}/>

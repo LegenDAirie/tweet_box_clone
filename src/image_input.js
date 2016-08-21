@@ -14,6 +14,7 @@ var ImageInput = function(props) {
       accept='image/gif,image/jpeg,image/jpg,image/png'
       onChange={uploadHandler}
       />
+
     </div>
   );
 };

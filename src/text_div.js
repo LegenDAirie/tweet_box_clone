@@ -30,12 +30,27 @@ var DivTextArea = function(props) {
     borderRadius: '1px'
   };
 
+  var imgS = {
+    width: '100%',
+    height: '100%'
+  };
+
+  var buttonStyle = {
+    background: '#07020D',
+    borderRadius: '50%',
+    color: '#fff',
+    border: 'none'
+  };
+
   var imgStyle = props.imagePreview ? imgStyleThumbnail: imgStyleNone;
 
   return (
     <div style={textAreaContainerStyle}>
       <textarea style={textAreaStyle} placeholder="Whats bugging you today?" onChange={props.handleInputChange}/>
-      <img style={imgStyle} src={props.imagePreview} alt=""/>
+      <div style={imgStyle}>
+        <button style={buttonStyle} onClick={props.removeImage}>x</button>
+        <img style={imgS} src={props.imagePreview} alt=""/>
+      </div>
     </div>
   );
 };
