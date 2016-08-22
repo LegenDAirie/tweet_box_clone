@@ -20,7 +20,7 @@ var DivTextArea = function(props) {
 
   var imgContainerStyleThumbnail = {
     width: '50%',
-    margin: '8px 10px'
+    margin: '8px 10px',
   };
 
   var textAreaContainerStyle = {
