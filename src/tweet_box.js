@@ -1,8 +1,9 @@
 import React from 'react';
 import inRange from 'lodash/inRange';
+import first from 'lodash/first';
+import filter from 'lodash/filter';
 import CharacterCount from './character_count';
 import ImageInput from './image_input';
-import first from 'lodash/first';
 import DivTextArea from './text_div';
 
 var TweetBox = React.createClass({
@@ -10,9 +11,7 @@ var TweetBox = React.createClass({
   getInitialState: function() {
     return {
       text: '',
-      file: '',
-      imagePreview: '',
-      files: {}
+      images: []
     };
   },
 
@@ -26,11 +25,29 @@ var TweetBox = React.createClass({
 
     var reader = new window.FileReader();
     var file = first(event.target.files);
+    var self = this;
+
+    var removeImage = function() {
+
+      var images = filter(self.state.images, (image) => {
+        return this.id != image.id;
+      });
+
+      self.setState({
+        images: images
+      });
+    };
 
     reader.onloadend = function() {
-      this.setState({
+      var images = this.state.images.concat([{
         file: file,
-        imagePreview: reader.result
+        imagePreview: reader.result,
+        removeImage: removeImage,
+        id: Date.now()
+      }]);
+
+      this.setState({
+        images: images
       });
     }.bind(this);
 
@@ -38,16 +55,9 @@ var TweetBox = React.createClass({
     event.target.value = null;
   },
 
-  removeImageHandler: function() {
-    this.setState({
-      file: '',
-      imagePreview: '',
-    });
-  },
-
   render: function() {
-    var { text, imagePreview } = this.state;
-    var textLength = imagePreview ? text.length + 24: text.length;
+    var { text, images } = this.state;
+    var textLength = images.length > 0 ? text.length + 24: text.length;
     var invalidNumberOfCharacters = !inRange(textLength, 1, 141);
 
     var tweetBoxStyle = {
@@ -92,9 +102,8 @@ var TweetBox = React.createClass({
 
         <div>
           <DivTextArea
-            imagePreview={imagePreview}
+            images={images}
             handleInputChange={this.handleInputChange}
-            removeImage={this.removeImageHandler}
           />
 
           <div style={toolBarStyle}>

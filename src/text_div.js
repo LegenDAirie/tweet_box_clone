@@ -7,18 +7,18 @@ var DivTextArea = function(props) {
     backgroundColor: 'transparent',
     outline: 'none',
     display: 'block',
-    width: '100%',
+    width: '95%',
     height: '50px',
     fontSize: '14px',
-    padding: '8px 10px',
+    padding: '8px 2.5%',
     color: '#465362'
   };
 
-  var imgStyleNone = {
+  var imgContainerStyleNone = {
     display: 'none'
   };
 
-  var imgStyleThumbnail = {
+  var imgContainerStyleThumbnail = {
     width: '50%',
     margin: '8px 10px'
   };
@@ -42,15 +42,21 @@ var DivTextArea = function(props) {
     border: 'none'
   };
 
-  var imgStyle = props.imagePreview ? imgStyleThumbnail: imgStyleNone;
+  var imgStyle = props.images.length > 0 ? imgContainerStyleThumbnail: imgContainerStyleNone;
 
   return (
     <div style={textAreaContainerStyle}>
-      <textarea style={textAreaStyle} placeholder="Whats bugging you today?" onChange={props.handleInputChange}/>
-      <div style={imgStyle}>
-        <button style={buttonStyle} onClick={props.removeImage}>x</button>
-        <img style={imgS} src={props.imagePreview} alt=""/>
-      </div>
+      <textarea style={textAreaStyle} placeholder="Whats up?" onChange={props.handleInputChange}/>
+
+      {props.images.map(function(image) {
+        return (
+          <div style={imgStyle}>
+            <button style={buttonStyle} onClick={image.removeImage.bind(image)}>x</button>
+            <img style={imgS} src={image.imagePreview} alt=""/>
+          </div>
+        );
+      })}
+
     </div>
   );
 };
