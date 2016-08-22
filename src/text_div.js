@@ -1,4 +1,5 @@
 import React from 'react';
+import {Row, Column, Thumbnail} from 'react-foundation';
 
 var DivTextArea = function(props) {
   var textAreaStyle = {
@@ -48,15 +49,18 @@ var DivTextArea = function(props) {
     <div style={textAreaContainerStyle}>
       <textarea style={textAreaStyle} placeholder="Whats up?" onChange={props.handleInputChange}/>
 
-      {props.images.map(function(image) {
-        return (
-          <div style={imgStyle}>
-            <button style={buttonStyle} onClick={image.removeImage.bind(image)}>x</button>
-            <img style={imgS} src={image.imagePreview} alt=""/>
-          </div>
-        );
-      })}
-
+      <div >
+        <Row className="display">
+          {props.images.map(function(image) {
+            return (
+              <Column>
+                <button style={buttonStyle} onClick={image.removeImage.bind(image)}>x</button>
+                <Thumbnail src={image.imagePreview} alt=""/>
+              </Column>
+            );
+          })}
+        </Row>
+      </div>
     </div>
   );
 };
