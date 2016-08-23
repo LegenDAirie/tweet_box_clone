@@ -5,6 +5,7 @@ import filter from 'lodash/filter';
 import CharacterCount from './character_count';
 import ImageInput from './image_input';
 import DivTextArea from './text_div';
+import { Button } from 'react-foundation';
 
 var TweetBox = React.createClass({
 
@@ -86,7 +87,7 @@ var TweetBox = React.createClass({
 
     var submitContainerStyle = {
       float: 'right',
-      marginLeft: 'auto'
+      margin: '10px 5px 0 auto'
     };
 
     var submitButtonStyle = {
@@ -111,7 +112,7 @@ var TweetBox = React.createClass({
 
             <div style={submitContainerStyle}>
               <CharacterCount  textLength={textLength}/>
-              <button style={submitButtonStyle} disabled={invalidNumberOfCharacters}>submit!</button>
+              <Button style={submitButtonStyle} disabled={invalidNumberOfCharacters}>submit!</Button>
             </div>
           </div>
 
