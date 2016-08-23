@@ -65,7 +65,7 @@ var TweetBox = React.createClass({
       backgroundColor: 'pink',
       width: '500px',
       borderRadius: '5px',
-      margin: 'auto'
+      margin: '5% auto'
     };
 
     var titleContainerStyle = {
@@ -98,7 +98,7 @@ var TweetBox = React.createClass({
       <div style={tweetBoxStyle}>
 
         <div style={titleContainerStyle}>
-          <h2 style={titleStyle}>Compose new Tweet</h2>
+          <h4 style={titleStyle}>Compose new Tweet</h4>
         </div>
 
         <div>

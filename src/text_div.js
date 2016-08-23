@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Column, Thumbnail, isColumn} from 'react-foundation';
+import {Row, Column, Thumbnail, Button, Sizes} from 'react-foundation';
 
 var DivTextArea = function(props) {
   var textAreaStyle = {
@@ -40,7 +40,7 @@ var DivTextArea = function(props) {
     background: '#07020D',
     borderRadius: '50%',
     color: '#fff',
-    border: 'none'
+    border: 'none',
   };
 
   var imgStyle = props.images.length > 0 ? imgContainerStyleThumbnail: imgContainerStyleNone;
@@ -54,7 +54,7 @@ var DivTextArea = function(props) {
           {props.images.map(function(image) {
             return (
               <Column isColumn>
-                <button style={buttonStyle} onClick={image.removeImage.bind(image)}>x</button>
+                <Button size={Sizes.TINY} style={buttonStyle} onClick={image.removeImage.bind(image)}>x</Button>
                 <Thumbnail src={image.imagePreview} alt=""/>
               </Column>
             );
