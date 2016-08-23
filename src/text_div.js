@@ -49,11 +49,11 @@ var DivTextArea = function(props) {
     <div style={textAreaContainerStyle}>
       <textarea style={textAreaStyle} placeholder="Whats up?" onChange={props.handleInputChange}/>
 
-      <div >
-        <Row className="display">
+      <div className="grid-block-example">
+        <Row upOnSmall={1} upOnMedium={2} upOnLarge={2}>
           {props.images.map(function(image) {
             return (
-              <Column>
+              <Column >
                 <button style={buttonStyle} onClick={image.removeImage.bind(image)}>x</button>
                 <Thumbnail src={image.imagePreview} alt=""/>
               </Column>
