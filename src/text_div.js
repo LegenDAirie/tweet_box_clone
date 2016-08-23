@@ -15,14 +15,6 @@ var DivTextArea = function(props) {
     color: '#465362'
   };
 
-  var imgContainerStyleNone = {
-    display: 'none'
-  };
-
-  var imgContainerStyleThumbnail = {
-    width: '50%',
-    margin: '8px 10px',
-  };
 
   var textAreaContainerStyle = {
     backgroundColor: '#fff',
@@ -31,10 +23,6 @@ var DivTextArea = function(props) {
     borderRadius: '1px'
   };
 
-  var imgS = {
-    width: '100%',
-    height: '100%'
-  };
 
   var buttonStyle = {
     background: '#07020D',
@@ -43,7 +31,6 @@ var DivTextArea = function(props) {
     border: 'none',
   };
 
-  var imgStyle = props.images.length > 0 ? imgContainerStyleThumbnail: imgContainerStyleNone;
 
   return (
     <div style={textAreaContainerStyle}>
